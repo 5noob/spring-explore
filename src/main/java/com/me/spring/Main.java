@@ -12,7 +12,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(HelloConfig.class);
+//        annotationConfigApplicationContext.scan("com.me.spring");
+//        annotationConfigApplicationContext.refresh();
+
         HelloController helloController = (HelloController) annotationConfigApplicationContext.getBean("helloController");
         helloController.hello();
+
+        HelloConfig helloConfig = (HelloConfig) annotationConfigApplicationContext.getBean("helloConfig");
+        helloConfig.say();
+
+        annotationConfigApplicationContext.registerShutdownHook();
     }
 }
